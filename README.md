@@ -58,20 +58,25 @@ This workshop teaches **spec-driven development** with AI agents:
 
 ## Workshop Exercises
 
-Complete exercises progressively, each building upon previous skills:
+Complete exercises progressively through 8 focused sessions:
 
-- Exercise 1: Thinking in Specs
-- Exercise 2: Platform Context Injection  
-- Exercise 3: First AI-Generated Component
-- Exercise 4: Incremental Agent Loops
-- And more...
+1. **Effective Prompting Techniques** - Practice refining prompts for better AI output
+2. **Thinking in Specs** - Create your first CustomerCard specification
+3. **Expanding Dashboard Specs** - Generate additional component specifications
+4. **Advanced Spec Integration** - Build complex multi-component features
+5. **Implementing from Specs** - Transform specs into working React components
+6. **Building Custom Slash Commands** - Create workflow automation commands
+7. **Introduction to Subagents** - Define specialized AI agents
+8. **Advanced Subagent Orchestration** - Batch implementation patterns
 
 ## Key Learning Objectives
 
+- Master effective prompting techniques for AI collaboration
 - Transform ideas into AI-ready specifications
 - Implement spec-driven development workflows
-- Use AI agents for iterative component development
-- Apply security best practices for AI-generated code
+- Build custom slash commands for workflow automation
+- Create and orchestrate specialized AI subagents
+- Apply iterative refinement and verification patterns
 - Build production-ready applications with AI assistance
 
 ## Support

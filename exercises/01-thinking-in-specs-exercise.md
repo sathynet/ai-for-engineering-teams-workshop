@@ -1,23 +1,42 @@
-# Exercise 01: Prompt Claude for Your First Spec
+---
+background: /bg-blue-bottom-right.jpeg
+---
 
-**Goal:** Use Claude to create a CustomerSelector specification
+# Exercise 01: Write Your First Spec
 
-**Your task** (10 minutes):
+**Time:** 10 minutes
+**Goal:** Create your first CustomerCard specification using AI assistance
 
-1. **Prompt Claude**:
-   ```
-   Write a CustomerSelector spec using @templates/spec-template.md and @requirements/customer-selector.md
-   ```
+## The Challenge
 
-2. **Review & refine** - check template structure, iterate if needed
+Transform requirements into an AI-ready specification using the established workshop templates and methodology.
 
-3. **Compare** with sample spec from previous slide
+## Success Criteria
 
-4. **Save progress**:
-   ```
-   git add -A && git commit -m "docs: add CustomerSelector specification"
-   ```
+- [ ] Complete CustomerCard specification following template structure
+- [ ] All sections (Context, Requirements, Constraints, Acceptance Criteria) filled
+- [ ] Ready for implementation in later exercises
+- [ ] Committed to version control
 
-**Note**: Spec writing only - implementation comes in Exercise 3
+---
+background: /bg-blue-bottom-right.jpeg
+---
 
-**Success:** Clear specification ready for implementation
+## Your Task
+
+**Ask Claude Code:**
+```
+Write a CustomerCard spec using @templates/spec-template.md and @requirements/customer-card.md
+```
+
+**Review the generated spec:**
+- All template sections complete?
+- Dashboard integration context clear?
+- Health score color coding specific?
+
+**Save your work:**
+```
+git add @specs/customer-card-spec.md && git commit -m "docs: add CustomerCard specification"
+```
+
+### Success: CustomerCard spec ready for component generation in later exercises!
