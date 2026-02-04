@@ -1,8 +1,9 @@
-interface CustomerCardProps {
-  name: string;
-  company: string;
-  healthScore: number;
-  domains?: string[];
+'use client';
+
+import { Customer } from '../data/mock-customers';
+
+export interface CustomerCardProps {
+  customer: Customer;
 }
 
 function getHealthColor(score: number): { bg: string; text: string; label: string } {
@@ -15,12 +16,13 @@ function getHealthColor(score: number): { bg: string; text: string; label: strin
   return { bg: 'bg-green-100', text: 'text-green-700', label: 'Good' };
 }
 
-export default function CustomerCard({ name, company, healthScore, domains }: CustomerCardProps) {
+export default function CustomerCard({ customer }: CustomerCardProps) {
+  const { name, company, healthScore, domains } = customer;
   const healthColor = getHealthColor(healthScore);
   const domainCount = domains?.length ?? 0;
 
   return (
-    <div className="bg-white rounded-lg shadow p-4 sm:p-6 hover:shadow-md transition-shadow">
+    <article className="bg-white rounded-lg shadow p-4 sm:p-6 hover:shadow-md transition-shadow">
       <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-3">
         <div className="flex-1 min-w-0">
           <h3 className="text-lg font-semibold text-gray-900 truncate">
@@ -31,7 +33,11 @@ export default function CustomerCard({ name, company, healthScore, domains }: Cu
           </p>
         </div>
 
-        <div className={`inline-flex items-center px-3 py-1 rounded-full ${healthColor.bg} ${healthColor.text} text-sm font-medium self-start`}>
+        <div
+          className={`inline-flex items-center px-3 py-1 rounded-full ${healthColor.bg} ${healthColor.text} text-sm font-medium self-start`}
+          role="status"
+          aria-label={`Health score: ${healthScore}, ${healthColor.label}`}
+        >
           <span className="sr-only">Health score:</span>
           {healthScore}
         </div>
@@ -49,7 +55,7 @@ export default function CustomerCard({ name, company, healthScore, domains }: Cu
               </span>
             )}
           </div>
-          <ul className="space-y-1">
+          <ul className="space-y-1" aria-label="Customer domains">
             {domains.map((domain) => (
               <li key={domain} className="text-sm text-gray-600 truncate">
                 {domain}
@@ -58,6 +64,6 @@ export default function CustomerCard({ name, company, healthScore, domains }: Cu
           </ul>
         </div>
       )}
-    </div>
+    </article>
   );
 }
