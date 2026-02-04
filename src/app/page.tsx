@@ -8,7 +8,7 @@ const CustomerCardDemo = () => {
     // Try to import CustomerCard - this will work after Exercise 3
     const CustomerCard = require('../components/CustomerCard')?.default;
     const mockCustomers = require('../data/mock-customers')?.mockCustomers;
-    
+
     if (CustomerCard && mockCustomers?.[0]) {
       return (
         <div className="space-y-4">
@@ -23,10 +23,38 @@ const CustomerCardDemo = () => {
   } catch (error) {
     // Component doesn't exist yet
   }
-  
+
   return (
     <div className="text-gray-500 text-sm">
       After Exercise 3, your CustomerCard components will appear here showing customer information with health scores.
+    </div>
+  );
+};
+
+const CustomerHealthDemo = () => {
+  try {
+    const CustomerHealthDisplay = require('../components/CustomerHealthDisplay')?.default;
+    const mockCustomerMetrics = require('../data/mock-customer-metrics')?.mockCustomerMetrics;
+
+    if (CustomerHealthDisplay && mockCustomerMetrics) {
+      return (
+        <div className="space-y-4">
+          <p className="text-green-600 text-sm font-medium">✅ HealthScoreCalculator implemented!</p>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+            <CustomerHealthDisplay customerId="4" metrics={mockCustomerMetrics['4']} />
+            <CustomerHealthDisplay customerId="5" metrics={mockCustomerMetrics['5']} />
+            <CustomerHealthDisplay customerId="3" metrics={mockCustomerMetrics['3']} />
+          </div>
+        </div>
+      );
+    }
+  } catch (error) {
+    console.error('CustomerHealthDisplay error:', error);
+  }
+
+  return (
+    <div className="text-gray-500 text-sm">
+      Customer health scoring system will appear here.
     </div>
   );
 };
@@ -59,6 +87,7 @@ export default function Home() {
         <h2 className="text-xl font-semibold mb-4">Workshop Progress</h2>
         <div className="space-y-2 text-sm text-gray-600">
           <p>✅ Setup Complete - Next.js app is running</p>
+          <p>✅ HealthScoreCalculator - Multi-factor scoring system implemented</p>
           <p className="text-gray-400">⏳ Exercise 3: CustomerCard component (implement to see here)</p>
           <p className="text-gray-400">⏳ Exercise 4: CustomerSelector integration</p>
           <p className="text-gray-400">⏳ Exercise 5: Domain Health widget</p>
@@ -73,6 +102,17 @@ export default function Home() {
           <h3 className="text-lg font-semibold mb-4">CustomerCard Component</h3>
           <Suspense fallback={<div className="text-gray-500">Loading...</div>}>
             <CustomerCardDemo />
+          </Suspense>
+        </section>
+
+        {/* Health Score Calculator Section */}
+        <section className="bg-white rounded-lg shadow p-6">
+          <h3 className="text-lg font-semibold mb-4">Customer Health Score Calculator</h3>
+          <p className="text-sm text-gray-600 mb-4">
+            Comprehensive health scoring with weighted multi-factor algorithm. Click to expand for detailed breakdown.
+          </p>
+          <Suspense fallback={<div className="text-gray-500">Loading...</div>}>
+            <CustomerHealthDemo />
           </Suspense>
         </section>
 
