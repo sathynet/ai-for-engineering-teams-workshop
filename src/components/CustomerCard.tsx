@@ -1,28 +1,50 @@
 'use client';
 
+import React from 'react';
 import { Customer } from '../data/mock-customers';
 
 export interface CustomerCardProps {
   customer: Customer;
+  onClick?: (customer: Customer) => void;
 }
 
 function getHealthColor(score: number): { bg: string; text: string; label: string } {
   if (score <= 30) {
-    return { bg: 'bg-red-100', text: 'text-red-700', label: 'Poor' };
+    return { bg: 'bg-red-100', text: 'text-red-700', label: 'Critical' };
   }
   if (score <= 70) {
-    return { bg: 'bg-yellow-100', text: 'text-yellow-700', label: 'Moderate' };
+    return { bg: 'bg-yellow-100', text: 'text-yellow-700', label: 'Warning' };
   }
-  return { bg: 'bg-green-100', text: 'text-green-700', label: 'Good' };
+  return { bg: 'bg-green-100', text: 'text-green-700', label: 'Healthy' };
 }
 
-export default function CustomerCard({ customer }: CustomerCardProps) {
-  const { name, company, healthScore, domains } = customer;
+export default function CustomerCard({ customer, onClick }: CustomerCardProps) {
+  const { name, email, company, healthScore, domains } = customer;
   const healthColor = getHealthColor(healthScore);
   const domainCount = domains?.length ?? 0;
 
+  const handleClick = () => {
+    if (onClick) {
+      onClick(customer);
+    }
+  };
+
+  const handleKeyDown = (e: React.KeyboardEvent) => {
+    if (e.key === 'Enter' || e.key === ' ') {
+      e.preventDefault();
+      handleClick();
+    }
+  };
+
   return (
-    <article className="bg-white rounded-lg shadow p-4 sm:p-6 hover:shadow-md transition-shadow">
+    <article
+      className="bg-white rounded-lg shadow p-4 sm:p-6 hover:shadow-md transition-shadow cursor-pointer max-w-[400px] min-h-[120px]"
+      onClick={handleClick}
+      onKeyDown={handleKeyDown}
+      tabIndex={0}
+      role="button"
+      aria-label={`View details for ${name} at ${company}`}
+    >
       <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-3">
         <div className="flex-1 min-w-0">
           <h3 className="text-lg font-semibold text-gray-900 truncate">
@@ -31,6 +53,11 @@ export default function CustomerCard({ customer }: CustomerCardProps) {
           <p className="text-sm text-gray-600 mt-1">
             {company}
           </p>
+          {email && (
+            <p className="text-sm text-gray-500 mt-1 truncate">
+              {email}
+            </p>
+          )}
         </div>
 
         <div
